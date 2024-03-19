@@ -1,6 +1,8 @@
 SUPERCOP
 ===
 
+From https://bench.cr.yp.to/supercop.html
+
 SUPERCOP is a toolkit developed by the VAMPIRE lab for measuring the performance of cryptographic software. SUPERCOP stands for System for Unified Performance Evaluation Related to Cryptographic Operations and Primitives; the name was suggested by Paul Bakker.
 The latest release of SUPERCOP measures the performance of hash functions, secret-key stream ciphers, public-key encryption systems, public-key signature systems, and public-key secret-sharing systems. SUPERCOP integrates and improves upon
 
@@ -33,7 +35,9 @@ Time to sign a message using a private key.
 Length of the signed message.
 Time to verify a signed message using a public key.
 "Time" refers to time on real computers: time on an ARM Cortex-A8, time on an Intel Sandy Bridge, time on an Intel Haswell, etc. The point of these cost measures is that they are directly visible to the cryptographic user.
+
 Contributing computer time to benchmarking
+--
 
 Do you have a computer that has enough time to benchmark all the available cryptographic software, that has no other tasks consuming CPU power, and that will have time in the future for updated benchmarks? Would you like to contribute CPU cycles to benchmarking? Perhaps your favorite type of computer isn't included in the current list of benchmarking platforms. Even if all of your computers are similar to computers in the list, you can help by providing independent verification of the speed measurements.
 To collect measurements, simply download, unpack, and run SUPERCOP:
@@ -50,6 +54,7 @@ Multiple computers that share filesystems can run SUPERCOP in the same directory
 SUPERCOP is a very large package, open to public contributions. It includes and uses code from questionable sources such as NSA. You should not run it on machines that have confidential data, special network access, etc.
 
 Alternative: Incremental benchmarks
+--
 
 Here is a different method of collecting measurements:
      wget https://bench.cr.yp.to/supercop/supercop-20240107.tar.xz
@@ -63,7 +68,9 @@ Another advantage of this method is parallelizability: on (e.g.) a 4-core machin
 
      nohup sh data-do 4 &
 to finish the benchmarks almost 4 times as quickly.
+
 Reducing randomness in benchmarks
+--
 
 Heterogeneous cores. ARM big.LITTLE systems have two different types of cores supporting the same instructions. Depending on the CPU load, the OS may decide to run jobs on the smaller, lower-power cores or on the larger, faster cores. It is also possible, although less common, to have heterogeneous cores on Intel/AMD systems.
 
@@ -140,6 +147,7 @@ Most computations run more slowly the first time because the code needs to be lo
 There are many other microarchitectural effects that create variations from one run of a computation to another run of the same computation, even when the inputs and randomness are identical: e.g., branch-predictor state.
 
 Database format
+--
 
 The output of SUPERCOP is an extensive database of measurements in a form suitable for easy computer processing. The database is currently stored as a separate compressed data.gz file for each machine. Version 20100702 of SUPERCOP, on a typical 2.4GHz Core 2 (two architectures, amd64 and x86, but with only 64-bit OpenSSL), produces a 94-megabyte data.gz that uncompresses to 734 megabytes.
 The database, in uncompressed form, consists of a series of database entries. Each database entry is a line consisting of the following space-separated words:
@@ -291,6 +299,8 @@ Operation measured.
 Primitive measured.
 The word cpucycles_implementation.
 The mechanism; e.g., amd64cpuinfo.
+
 Version
+--
 
 This is version 2024.01.07 of the supercop.html web page. This web page is in the public domain.
